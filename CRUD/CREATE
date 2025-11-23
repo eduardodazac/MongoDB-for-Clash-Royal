@@ -1,3 +1,6 @@
+INSERT (Crear)
+Inserción de documentos personalizados (Cartas nuevas)
+
 db.clash_royale_cards.insertMany([
     {
         name: "Golem de Hielo",
