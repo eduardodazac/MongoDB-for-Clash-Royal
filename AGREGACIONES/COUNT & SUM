@@ -1,0 +1,19 @@
+ANÁLISIS DE "META" (USO) POR RAREZA
+
+Analiza qué tan usadas son las cartas según su rareza.
+Nos dice si los jugadores prefieren usar cartas Comunes o Legendarias.
+
+db.clash_royale_cards.aggregate([
+    {
+        $group: {
+            _id: "$rarity",
+            cantidad_cartas: { $sum: 1 }, // Cuántas cartas hay de esta rareza
+            uso_promedio: { $avg: "$usage" }, // % de uso promedio
+            uso_maximo: { $max: "$usage" }, // % de la carta más popular de esta rareza
+            uso_total_acumulado: { $sum: "$usage" } // Suma total de % de uso
+        }
+    },
+    { 
+        $sort: { uso_promedio: -1 } // Ordenar por las más usadas en promedio
+    }
+]);
