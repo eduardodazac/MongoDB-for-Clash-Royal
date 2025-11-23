@@ -1,0 +1,18 @@
+DISTRIBUCIÓN DE COSTOS ($bucket)
+
+Clasifica las cartas en rangos: Baratas (0-3), Medias (3-5), Caras (5+).
+Es como un histograma automático.
+
+db.clash_royale_cards.aggregate([
+    {
+        $bucket: {
+            groupBy: "$elixirCost",
+            boundaries: [0, 3, 5, 10], // Los cortes de los grupos
+            default: "Otros",
+            output: {
+                total: { $sum: 1 },
+                ejemplos: { $push: "$name" } // Guarda los nombres en un array
+            }
+        }
+    }
+]);
