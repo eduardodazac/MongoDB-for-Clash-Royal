@@ -1,0 +1,16 @@
+// ==========================================
+// 1. TOP 5 CARTAS MÁS USADAS ($sort + $limit)
+// ==========================================
+// Ordena descendentemente por 'usage' y toma solo las 5 primeras.
+// Útil para identificar el "Meta" actual del juego.
+db.clash_royale_cards.aggregate([
+    { 
+        $sort: { usage: -1 } // -1 para descendente (Mayor a menor)
+    },
+    { 
+        $limit: 5 
+    },
+    { 
+        $project: { name: 1, usage: 1, rarity: 1, _id: 0 } 
+    }
+]);
