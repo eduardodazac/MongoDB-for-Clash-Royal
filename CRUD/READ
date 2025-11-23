@@ -1,0 +1,7 @@
+READ (Lectura)
+Aqui mostramos como realizar el proceso de de consuta seleccionando las columnas que se quiere ver. 
+
+db.clash_royale_cards.find({
+    name: { $in: ["Golem de Hielo", "Flechas"] }
+}).pretty();
+
