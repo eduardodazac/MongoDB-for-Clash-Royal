@@ -1,0 +1,15 @@
+* D. DELETE (Eliminar)
+ * Limpieza de datos corruptos o inconsistentes.
+ * Criterio: Eliminar cartas Legendarias con hitpoints nulos o NaN.
+ * Referencia: Informe Pág. 8
+
+
+
+db.clash_royale_cards.deleteMany({
+    rarity: "legendary",
+    $or: [
+        { hitpoints: null },
+        { hitpoints: "NaN" },
+        { hitpoints: NaN }
+    ]
+});
