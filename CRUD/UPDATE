@@ -1,0 +1,7 @@
+UPDATE (Actualizar)
+ * Modificación de estadísticas (Buff a la carta 'Flechas')
+ * Cambio: damage de 200 a 333
+
+db.clash_royale_cards.updateOne(
+    { name: "Flechas" },
+    { $set: { damage: 333 } }
