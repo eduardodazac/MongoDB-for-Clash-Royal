@@ -1,0 +1,27 @@
+2. EFICIENCIA DE ELIXIR ($addFields + $match)
+
+crea un campo calculado 'hp_per_elixir' para ver qué carta da más vida por cada gota de elixir.
+Filtra primero para asegurar que los campos sean numéricos y evitar errores de división.
+
+db.clash_royale_cards.aggregate([
+    {
+        $match: {
+            hitpoints: { $type: "number" },
+            elixirCost: { $type: "number", $gt: 0 }
+        }
+    },
+    {
+        $addFields: {
+            hp_per_elixir: { $divide: ["$hitpoints", "$elixirCost"] }
+        }
+    },
+    { 
+        $sort: { hp_per_elixir: -1 } 
+    },
+    { 
+        $limit: 5 
+    },
+    { 
+        $project: { name: 1, hp_per_elixir: 1, elixirCost: 1 } 
+    }
+]);
