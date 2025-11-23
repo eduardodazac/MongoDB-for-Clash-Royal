@@ -1,0 +1,17 @@
+RESUMEN GLOBAL DEL JUEGO (Dashboard KPI)
+
+Calcula métricas generales de todo el mazo de cartas en una sola consulta.
+Aqui usamos agregaciones de Suma, primedio, conteo, max y min
+
+db.clash_royale_cards.aggregate([
+    {
+        $group: {
+            _id: null, // No agrupamos por campo, queremos el total global
+            total_cartas: { $sum: 1 }, // Conteo total
+            total_vida_mazo: { $sum: "$hitpoints" }, // Suma de toda la vida
+            costo_elixir_promedio: { $avg: "$elixirCost" }, // Promedio de costo
+            costo_elixir_maximo: { $max: "$elixirCost" }, // La carta más cara
+            costo_elixir_minimo: { $min: "$elixirCost" }  // La carta más barata
+        }
+    }
+]);
