@@ -1,0 +1,14 @@
+ESTADÍSTICAS PROMEDIO POR TIPO ($group + $avg)
+
+Calcula el costo promedio de elixir y uso promedio agrupado por tipo (Troop, Building, Spell).
+
+db.clash_royale_cards.aggregate([
+    {
+        $group: {
+            _id: "$type",
+            promedio_elixir: { $avg: "$elixirCost" },
+            promedio_uso: { $avg: "$usage" },
+            cantidad_cartas: { $sum: 1 }
+        }
+    }
+]);
