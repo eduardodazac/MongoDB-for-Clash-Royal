@@ -1,0 +1,20 @@
+db.clash_royale_cards.insertMany([
+    {
+        name: "Golem de Hielo",
+        rarity: "Rare",
+        elixir_cost: 2,
+        type: "Troop",
+        hitpoints: 1500,
+        damage: 80,
+        description: "Una tropa de hielo barata y tanqueta."
+    },
+    {
+        name: "Flechas",
+        rarity: "Common",
+        elixir_cost: 3,
+        type: "Spell",
+        hitpoints: null, // Definido como null ya que es un hechizo
+        damage: 200,
+        description: "Lluvia de flechas que daña un área."
+    }
+]);
